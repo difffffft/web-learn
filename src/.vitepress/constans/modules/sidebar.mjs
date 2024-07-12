@@ -1,11 +1,19 @@
-import { html } from "../../../docs/modules/front.mjs";
+import { htmlPath, html } from "../../../docs/modules/front.mjs";
 
 export const sidebar = {
-  "/docs/front/html": {
+  [htmlPath]: {
     items: [
       {
         text: "html",
         items: html,
+      },
+      {
+        text: "css",
+        items: [],
+      },
+      {
+        text: "javascript",
+        items: [],
       },
     ],
   },
