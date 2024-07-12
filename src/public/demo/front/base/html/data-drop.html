@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拖动和放置重新排列列表</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            margin: 5px;
+            padding: 10px;
+            background-color: #f4f4f4;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: move;
+            transition: background-color 0.2s ease;
+        }
+
+        li.dragging {
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <h1>拖动和放置重新排列列表</h1>
+    <ul id="sortable">
+        <li draggable="true">项目 1</li>
+        <li draggable="true">项目 2</li>
+        <li draggable="true">项目 3</li>
+        <li draggable="true">项目 4</li>
+        <li draggable="true">项目 5</li>
+    </ul>
+    <script>
+        const sortableList = document.getElementById('sortable');
+
+        sortableList.addEventListener('dragstart', (event) => {
+            event.target.classList.add('dragging');
+        });
+
+        sortableList.addEventListener('dragend', (event) => {
+            event.target.classList.remove('dragging');
+        });
+
+        sortableList.addEventListener('dragover', (event) => {
+            event.preventDefault();
+            const draggingElement = document.querySelector('.dragging');
+            const closestElement = getClosestElement(event.clientY);
+            
+            if (closestElement) {
+                sortableList.insertBefore(draggingElement, closestElement);
+            } else {
+                sortableList.appendChild(draggingElement);
+            }
+        });
+
+        // 获取距离y坐标最近的元素
+        function getClosestElement(y) {
+            // 获取所有非拖拽状态的li元素
+            const items = [...sortableList.querySelectorAll('li:not(.dragging)')];
+
+            // 遍历所有元素，找到距离y坐标最近的元素
+            return items.reduce((closest, item) => {
+                // 获取元素的位置信息
+                const box = item.getBoundingClientRect();
+                // 计算元素中心点与y坐标的偏移量
+                const offset = y - box.top - box.height / 2;
+                // 如果偏移量小于0且大于当前最接近的偏移量，则更新最接近的元素
+                if (offset < 0 && offset > closest.offset) {
+                    return { offset: offset, element: item };
+                }
+                // 否则返回当前最接近的元素
+                return closest;
+            }, { offset: Number.NEGATIVE_INFINITY }).element;
+        }
+    </script>
+</body>
+</html>

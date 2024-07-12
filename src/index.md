@@ -8,7 +8,7 @@ hero:
   actions:
     - theme: brand
       text: Quickstart
-      link: /docs/front/html/doctype
+      link: /docs/front/base/html/doctype
     - theme: alt
       text: View on Github
       link: https://github.com/difffffft/web-learn

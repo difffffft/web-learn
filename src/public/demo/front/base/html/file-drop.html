@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag-and-Drop File Example</title>
+    <style>
+        #drop-target {
+            width: 300px;
+            height: 200px;
+            border: 2px dashed #aaa;
+            line-height: 200px;
+            text-align: center;
+            color: #aaa;
+        }
+        #drop-target.dragover {
+            border-color: #333;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div id="drop-target">Drop files here</div>
+    <div id="file-info"></div>
+
+    <script>
+        const dropTarget = document.getElementById('drop-target');
+        const fileInfo = document.getElementById('file-info');
+
+        dropTarget.addEventListener('dragover', (event) => {
+            event.preventDefault(); // 必须调用以允许 drop 事件
+
+            // 文件放在上面，需要显示颜色
+            dropTarget.classList.add('dragover');
+        });
+
+        dropTarget.addEventListener('dragleave', () => {
+
+            // 不显示颜色
+            dropTarget.classList.remove('dragover');
+        });
+
+        // 监听放置事件
+        // 当文件被放置在目标区域时，触发 drop 事件
+        dropTarget.addEventListener('drop', (event) => {
+            event.preventDefault();
+            dropTarget.classList.remove('dragover');
+
+            const files = event.dataTransfer.files; // 获取拖放的文件列表
+            if (files.length > 0) {
+                handleFiles(files);
+            }
+        });
+
+        function handleFiles(files) {
+            fileInfo.innerHTML = ''; // 清除之前的内容
+
+            for (const file of files) {
+                const fileElement = document.createElement('div');
+                fileElement.textContent = `File name: ${file.name}, Size: ${file.size} bytes, Type: ${file.type}`;
+                fileInfo.appendChild(fileElement);
+
+                // 读取文件内容（示例使用 FileReader）
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    console.log('File content:', e.target.result); // 输出文件内容到控制台
+                };
+                reader.readAsText(file); // 以文本格式读取文件内容
+            }
+        }
+    </script>
+</body>
+</html>
