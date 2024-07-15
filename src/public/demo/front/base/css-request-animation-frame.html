@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>requestAnimationFrame Animation Example</title>
+    <style>
+      #animated-box {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+        top: 50px;
+        left: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="animated-box"></div>
+
+    <script>
+      // 获取动画元素
+      var box = document.getElementById("animated-box");
+      var position = 0;
+      var speed = 2; // 方块每次移动的像素
+
+      function animate(time) {
+        // 更新位置
+        position += speed;
+
+        // 如果方块到达了窗口的右侧边缘，将其重置到左侧
+        if (position > window.innerWidth) {
+          position = 0;
+        }
+
+        // 更新方块的样式
+        box.style.left = position + "px";
+
+        // 请求下一帧动画
+        requestAnimationFrame(animate);
+      }
+
+      // 启动动画
+      requestAnimationFrame(animate);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Float Collapse Demo</title>
+    <style>
+      .container {
+        border: 2px solid #000;
+        /* 如果没有清除浮动，这里的高度不会考虑浮动子元素 */
+      }
+
+      .float-element {
+        width: 200px;
+        height: 100px;
+        background-color: #f00;
+        color: #fff;
+        float: left; /* 设置元素浮动 */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="float-element">I am a floated element!</div>
+      <!-- 浮动元素之后的文本 -->
+      You can see that the container does not wrap around the floated element,
+      causing the height to collapse.
+    </div>
+
+    <p>Notice the container's height does not include the floated element.</p>
+  </body>
+</html>

@@ -53,6 +53,6 @@ Drag-and-Drop API 是一个用于在网页上实现拖放操作的接口，通�
 
 ### Drag-and-Drop API 的使用场景有哪些？
 
-- <a href="/demo/front/base/html/file-drop.html" target="_blank">文件上传</a>：允许用户从桌面拖动文件到网页上进行上传。
-- <a href="/demo/front/base/html/data-drop.html" target="_blank">数据排序</a>：允许用户通过拖动和放置的方式重新排列列表项。
+- <a href="/demo/front/base/html/html-file-drop.html" target="_blank">文件上传</a>：允许用户从桌面拖动文件到网页上进行上传。
+- <a href="/demo/front/base/html/html-data-drop.html" target="_blank">数据排序</a>：允许用户通过拖动和放置的方式重新排列列表项。
 - 组件拖放：允许用户在网页上拖动和放置自定义组件。
