@@ -38,4 +38,18 @@ export const css = [
   { text: "文本超出隐藏", link: `${cssPath}text-overflow` },
   { text: "媒体查询", link: `${cssPath}media-queries` },
   { text: "CSS工程化", link: `${cssPath}engineering` },
+  { text: "常见的CSS布局单位", link: `${cssPath}layout-unit` },
+  { text: "水平垂直居中的实现", link: `${cssPath}center` },
+  { text: "flex", link: `${cssPath}flex` },
+  { text: "flex:1", link: `${cssPath}flex-one` },
+  { text: "Sticky粘性定位", link: `${cssPath}sticky` },
+];
+
+const jsPath = basePath + "/js-";
+export const js = [
+  { text: "JS的数据类型", link: `${jsPath}datatype` },
+  { text: "堆栈", link: `${jsPath}stack-heap` },
+  { text: "Symbol", link: `${jsPath}symbol` },
+  { text: "数据类型检测", link: `${jsPath}datatype-check` },
+  { text: "null VS undefined", link: `${jsPath}null-undefined` },
 ];

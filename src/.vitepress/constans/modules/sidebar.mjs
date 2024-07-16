@@ -1,4 +1,4 @@
-import { basePath, html, css } from "../../../docs/modules/front.mjs";
+import { basePath, html, css, js } from "../../../docs/modules/front.mjs";
 
 export const sidebar = {
   [basePath]: {
@@ -13,7 +13,7 @@ export const sidebar = {
       },
       {
         text: "javascript",
-        items: [],
+        items: js,
       },
     ],
   },
