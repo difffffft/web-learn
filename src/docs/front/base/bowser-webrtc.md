@@ -6,7 +6,7 @@
 
 方案选用为基于 WebRTC 的视频即时通讯，它原生支持对 RTP 协议的解码，所以能够做到延迟很低，大概0.2-0.4秒左右，其他方案都有大于1秒的延迟。WebRTC对浏览器有要求，[点击此处](https://caniuse.com/rtcpeerconnection)中查看支持的浏览器。
 
-![Description](/api/web/static/4)
+<!-- ![Description](/api/web/static/4) -->
 
 WebRTC 的实现方案在 Github 有非常多，经过一序列对比和测试，最终选择的是使用 webrtc-streamer 这个项目，其容易使用并且较为稳定。
 
@@ -18,7 +18,7 @@ webrtc-streamer 不仅支持对 RTSP 流的捕获而且还支持对V4L2以及屏
 
 由于 webrtc 的核心库还不支持 h265, 所以需要设置为 h264 编码。登录到海康威视摄像头的后台配置中心，在 “视音频” 菜单下进行设置，然后保存。
 
-![Description](/api/web/static/5)
+<!-- ![Description](/api/web/static/5) -->
 
 2.下载webrtc-streamer
 
