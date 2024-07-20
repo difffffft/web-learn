@@ -55,7 +55,7 @@ export default defineConfig({
   themeConfig: {
     prev: "false",
     next: "false",
-    logo: "/svgs/logo.svg",
+    logo: "/images/vitepress-logo-mini.png",
     editLink: {
       pattern: "https://github.com/difffffft/web-learn/edit/master/docs/:path",
     },
@@ -71,6 +71,10 @@ export default defineConfig({
     lastUpdatedText: "最后更新",
     nav,
     sidebar,
+    footer: {
+      message: 'Released under the <a href="">MIT License</a>.',
+      copyright: '<a href="http://chatgpt.com" target="_blank">Chatgpt</a> <a href="https://www.yuque.com/cuggz/interview/hswu8g?theme=light" target="_blank">Interview</a>'
+    },
     socialLinks: [
       { icon: "twitter", link: "https://x.com/difffffft" },
       { icon: "github", link: "https://github.com/difffffft" },

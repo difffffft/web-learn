@@ -46,10 +46,18 @@ export const css = [
 ];
 
 const jsPath = basePath + "/js-";
-export const js = [
+export const jsDataType = [
   { text: "JS的数据类型", link: `${jsPath}datatype` },
   { text: "堆栈", link: `${jsPath}stack-heap` },
   { text: "Symbol", link: `${jsPath}symbol` },
   { text: "数据类型检测", link: `${jsPath}datatype-check` },
+  { text: "数组类型检测", link: `${jsPath}arr-check` },
   { text: "null VS undefined", link: `${jsPath}null-undefined` },
+  { text: "instanceof的原理及其实现", link: `${jsPath}instanceof` },
+  { text: "js浮点问题", link: `${jsPath}float` },
+  { text: "ObjectIs", link: `${jsPath}object-is` },
+  { text: "ObjectAssign", link: `${jsPath}object-assign` },
+  { text: "ObjectKeys", link: `${jsPath}object-keys` },
+  { text: "包装类型", link: `${jsPath}wrapper-objects` },
+  { text: "隐式类型转换", link: `${jsPath}implicit-type-conversion` },
 ];
