@@ -1,6 +1,6 @@
-export const basePath = "/docs/front/base";
+export const frontBaseBasePath = "/docs/front/base";
 
-const htmlPath = basePath + "/html-";
+const htmlPath = frontBaseBasePath + "/html-";
 export const html = [
   { text: "文档声明", link: `${htmlPath}doctype` },
   { text: "基础标签", link: `${htmlPath}base-tag` },
@@ -13,7 +13,7 @@ export const html = [
   { text: "拖拽", link: `${htmlPath}drag-and-drop` },
 ];
 
-const cssPath = basePath + "/css-";
+const cssPath = frontBaseBasePath + "/css-";
 export const css = [
   { text: "选择器及其优先级", link: `${cssPath}selector` },
   { text: "可继承属性", link: `${cssPath}can-extends-attr` },
@@ -45,7 +45,7 @@ export const css = [
   { text: "Sticky粘性定位", link: `${cssPath}sticky` },
 ];
 
-const jsPath = basePath + "/js-";
+const jsPath = frontBaseBasePath + "/js-";
 export const jsDataType = [
   { text: "JS的数据类型", link: `${jsPath}datatype` },
   { text: "堆栈", link: `${jsPath}stack-heap` },
@@ -61,3 +61,31 @@ export const jsDataType = [
   { text: "包装类型", link: `${jsPath}wrapper-objects` },
   { text: "隐式类型转换", link: `${jsPath}implicit-type-conversion` },
 ];
+
+const jsBasePath = frontBaseBasePath + "/js-base-";
+export const jsBase = [
+  { text: "new", link: `${jsBasePath}new` },
+  { text: "Map和Object的区别", link: `${jsBasePath}map-vs-object` },
+  { text: "Map和WeakMap的区别", link: `${jsBasePath}map-vs-weakmap` },
+  { text: "yield", link: `${jsBasePath}yield` },
+  { text: "异步加载脚本", link: `${jsBasePath}async-script` },
+
+  { text: "数组的原生方法", link: `${jsBasePath}array-method` },
+  { text: "类数组", link: `${jsBasePath}like-array` },
+  { text: "arguments", link: `${jsBasePath}arguments` },
+  { text: "编码", link: `${jsBasePath}unicode` },
+  { text: "encodeURI", link: `${jsBasePath}encode-uri` },
+]
+
+const jsEs6Path = frontBaseBasePath + "/js-es6-";
+export const jsEs6 = [
+  { text: "LetConstVar", link: `${jsEs6Path}let-const-var` },
+  { text: "箭头函数", link: `${jsEs6Path}arrow-func` },
+  { text: "扩展运算符", link: `${jsEs6Path}spread-operator` },
+  { text: "解构", link: `${jsEs6Path}deconstruction` },
+  { text: "Rest", link: `${jsEs6Path}rest` },
+  { text: "模板语法", link: `${jsEs6Path}template-string` },
+  { text: "模块化", link: `${jsEs6Path}module` },
+]
+
+

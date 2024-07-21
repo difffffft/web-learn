@@ -1,7 +1,8 @@
-import { basePath, html, css, jsDataType } from "../../../docs/modules/front.mjs";
+import { frontBaseBasePath, html, css, jsBase, jsDataType, jsEs6 } from "../../../docs/modules/front/base.mjs";
+import { frontBrowserBasePath, frontBrowserDomDocList } from "../../../docs/modules/front/browser.mjs";
 
 export const sidebar = {
-  [basePath]: {
+  [frontBaseBasePath]: {
     items: [
       {
         text: "html",
@@ -16,7 +17,7 @@ export const sidebar = {
         items: [
           {
             text: "语法和基础特性",
-            items: []
+            items: jsBase
           },
           {
             text: "数据类型",
@@ -24,7 +25,7 @@ export const sidebar = {
           },
           {
             text: "ES6",
-            items: []
+            items: jsEs6
           },
           {
             text: "作用域和闭包",
@@ -46,9 +47,17 @@ export const sidebar = {
             text: "模块化",
             items: []
           },
-          
+
         ],
       },
     ],
   },
+  [frontBrowserBasePath]: {
+    items: [
+      {
+        text: "基础",
+        items: frontBrowserDomDocList,
+      },
+    ]
+  }
 };

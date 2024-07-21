@@ -1,4 +1,5 @@
-import { html } from "../../../docs/modules/front.mjs";
+import { frontBaseBasePath, html } from "../../../docs/modules/front/base.mjs";
+import { frontBrowserBasePath, frontBrowserDomDocList } from "../../../docs/modules/front/browser.mjs";
 
 export const nav = [
   {
@@ -11,12 +12,12 @@ export const nav = [
           {
             text: "基础",
             link: html[0].link,
-            activeMatch: "/docs/front/base/(.*)",
+            activeMatch: `${frontBaseBasePath}/(.*)`,
           },
           {
             text: "浏览器",
-            link: "/浏览器",
-            activeMatch: "/docs/front/browser/(.*)",
+            link: frontBrowserDomDocList[0].link,
+            activeMatch: `${frontBrowserBasePath}/(.*)`,
           },
         ]
       },
