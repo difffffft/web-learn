@@ -1,5 +1,6 @@
 import { frontBaseBasePath, html } from "../../../docs/modules/front/base.mjs";
 import { frontBrowserBasePath, frontBrowserDomDocList } from "../../../docs/modules/front/browser.mjs";
+import { frontFrameworksBasePath, frontFrameworksVueDocList } from "../../../docs/modules/front/frameworks.mjs";
 
 export const nav = [
   {
@@ -27,8 +28,8 @@ export const nav = [
         items: [
           {
             text: "框架",
-            activeMatch: "/docs/front/k/(.*)",
-            link: "/1",
+            link: frontFrameworksVueDocList[1].link,
+            activeMatch: `${frontFrameworksBasePath}/(.*)`,
           },
           {
             text: "库",

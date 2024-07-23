@@ -75,6 +75,13 @@ export const jsBase = [
   { text: "arguments", link: `${jsBasePath}arguments` },
   { text: "编码", link: `${jsBasePath}unicode` },
   { text: "encodeURI", link: `${jsBasePath}encode-uri` },
+
+  { text: "严格模式", link: `${jsBasePath}use-strict` },
+
+  { text: "原型与原型链接", link: `${jsBasePath}prototype` },
+  { text: "this", link: `${jsBasePath}this` },
+  { text: "call、apply、bind的区别", link: `${jsBasePath}call-apply-bind` },
+  { text: "继承", link: `${jsBasePath}extends` },
 ]
 
 const jsEs6Path = frontBaseBasePath + "/js-es6-";
@@ -86,6 +93,22 @@ export const jsEs6 = [
   { text: "Rest", link: `${jsEs6Path}rest` },
   { text: "模板语法", link: `${jsEs6Path}template-string` },
   { text: "模块化", link: `${jsEs6Path}module` },
+]
+
+const jsAsyncPath = frontBaseBasePath + "/js-async-";
+export const jsAsync = [
+  { text: "回调函数", link: `${jsAsyncPath}callback` },
+  { text: "Promise", link: `${jsAsyncPath}promise` },
+  { text: "Async/await", link: `${jsAsyncPath}await` },
+  { text: "事件循环", link: `${jsAsyncPath}event-loop` },
+  { text: "异步错误处理", link: `${jsAsyncPath}error` },
+]
+
+const jsClosurePath = frontBaseBasePath + "/js-closure-";
+export const jsClosure = [
+  { text: "闭包", link: `${jsClosurePath}`.replace('e-', 'e') },
+  { text: "作用域", link: `${jsClosurePath}scope` },
+  { text: "执行上下文", link: `${jsClosurePath}execution-context` },
 ]
 
 
