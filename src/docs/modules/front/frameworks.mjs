@@ -4,7 +4,6 @@ const frontFrameworksVuePath = frontFrameworksBasePath + "/vue-";
 export const frontFrameworksVueDocList = [
   { text: "官网", link: `https://cn.vuejs.org/` },
   { text: "简介", link: `${frontFrameworksVuePath}introduction` },
-  { text: "快速开始", link: `${frontFrameworksVuePath}quick-start` },
 ];
 
 const frontFrameworksReactPath = frontFrameworksBasePath + "/react-";
