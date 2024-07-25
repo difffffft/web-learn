@@ -187,6 +187,10 @@ export const nav = [
         text: "Code Review",
         link: "/t",
       },
+      {
+        text: "English",
+        link: "/docs/other/english/index",
+      },
     ]
   },
 ];

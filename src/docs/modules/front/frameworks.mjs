@@ -38,6 +38,8 @@ export const frontFrameworksNextDocList = [
   { text: "Link组件", link: `${frontFrameworksNextPath}link` },
   { text: "异常处理", link: `${frontFrameworksNextPath}error` },
   { text: "并行路由", link: `${frontFrameworksNextPath}parallel-routes` },
+  { text: "拦截路由", link: `${frontFrameworksNextPath}intercepting-routes` },
+  { text: "中间件", link: `${frontFrameworksNextPath}middleware` },
 ];
 
 const frontFrameworksTailwindPath = frontFrameworksBasePath + "/react-";

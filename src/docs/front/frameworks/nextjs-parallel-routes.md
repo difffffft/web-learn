@@ -1,38 +1,30 @@
+Parallel Routes 是 Next.js 14 引入的一个新特性,允许您在同一布局中同时呈现多个页面。这为创建复杂的用户界面提供了更大的灵活性。让我们逐步了解这个概念:
+
+1. 基本概念
+
+Parallel Routes 允许您独立地加载和渲染同一布局中的多个页面。这些页面可以有自己的加载和错误状态,并且可以独立地进行导航。
+
+2. 语法
+
+Parallel Routes 使用特殊的文件命名约定来实现:
+
 ```
 app/
-  @modal/
-    login/
-      page.js
-  dashboard/
-    page.js
+├── @team/
+│   └── page.js
+├── @analytics/
+│   └── page.js
+└── layout.js
 ```
 
-### 并行路由
+在这个例子中,`@team` 和 `@analytics` 是 Parallel Routes。
 
-平行路由允许您在同一布局中同时或有条件地呈现一个或多个页面。它们对于应用程序中高度动态的部分（例如社交网站上的仪表板和提要）非常有用。
+3. 在布局中使用
 
-例如，考虑一个仪表板，您可以使用并行路由同时呈现`团队`和`分析`页面：
+在 layout.js 文件中,您可以这样使用 Parallel Routes:
 
-![alt text](./images/000001.png)
-
-### 插槽
-
-使用命名插槽创建并行路由。插槽使用 `@folder` 约定定义。例如，以下文件结构定义了两个插槽：`@analytics` 和 `@team`：
-
-![alt text](./images/000002.png)
-
-插槽作为 props 传递给共享的父布局。对于上述示例，`app/layout.js` 中的组件现在接受 `@analytics` 和 `@team` 插槽 props，并可以并行呈现它们以及 `children` prop：
-
-```tsx
-export default function Layout({
-  children,
-  team,
-  analytics,
-}: {
-  children: React.ReactNode
-  analytics: React.ReactNode
-  team: React.ReactNode
-}) {
+```jsx
+export default function Layout({ team, analytics, children }) {
   return (
     <>
       {children}
@@ -43,19 +35,159 @@ export default function Layout({
 }
 ```
 
-但是，插槽不是路由段，不会影响 URL 结构。例如，对于 `/@analytics/views`，URL 将是 `/views`，因为 `@analytics` 是一个插槽。
+4. 条件渲染
 
-::: tip
-值得知道的是：
+您可以根据条件来决定是否渲染某个 Parallel Route:
 
-`children` prop 是一个隐式的插槽，不需要映射到文件夹。这意味着 `app/page.js` 等同于 `app/@children/page.js`。
-:::
+```jsx
+export default function Layout({ dashboard, login }) {
+  return isLoggedIn ? dashboard : login
+}
+```
 
-### 活动状态和导航
+![alt text](./images/00001.png)
 
-默认情况下，Next.js 会跟踪每个插槽的活动状态（或子页面）。但是，在插槽内呈现的内容将取决于导航类型：
+5. 模态框和复杂 UI
 
-软导航：在客户端导航期间，Next.js 将执行部分渲染，更改插槽内的子页面，同时保持其他插槽的活动子页面，即使它们不匹配当前的 URL。
+Parallel Routes 特别适合实现模态框和其他复杂的 UI 模式:
 
-硬导航：在完整页面加载（浏览器刷新）后，Next.js 无法确定不匹配当前 URL 的插槽的活动状态。相反，它将为不匹配的插槽呈现 default.js 文件，如果不存在 default.js，则呈现 404 页面。
+```jsx
+app/
+├── page.js
+├── @modal/
+│   └── login/
+│       └── page.js
+└── layout.js
+```
 
+在 layout.js 中:
+
+```jsx
+export default function Layout({ children, modal }) {
+  return (
+    <>
+      {children}
+      {modal}
+    </>
+  )
+}
+```
+
+6. 导航
+
+您可以使用 Next.js 的 Link 组件或 useRouter 钩子来导航到 Parallel Routes:
+
+```jsx
+import Link from 'next/link'
+
+// 使用 Link
+<Link href="/dashboard/settings">Settings</Link>
+
+// 使用 useRouter
+import { useRouter } from 'next/navigation'
+
+const router = useRouter()
+router.push('/dashboard/settings')
+```
+
+7. 加载和错误处理
+
+每个 Parallel Route 可以有自己的 loading.js 和 error.js 文件,用于处理加载状态和错误:
+
+```
+app/
+├── @team/
+│   ├── loading.js
+│   └── error.js
+└── @analytics/
+    ├── loading.js
+    └── error.js
+```
+
+8. 注意事项
+
+- Parallel Routes 是可选的。如果某个路由不存在,Next.js 会优雅地处理这种情况。
+- 您可以嵌套使用 Parallel Routes。
+- Parallel Routes 与服务器组件和客户端组件都兼容。
+
+Parallel Routes 为 Next.js 应用程序提供了强大的布局和路由控制能力,使得构建复杂的、动态的用户界面变得更加简单和灵活。
+
+### default.js
+
+`default.js` 是 Parallel Routes 中的一个特殊文件,它在以下情况下起作用:
+
+1. 兜底渲染
+
+当一个 Parallel Route 的槽位没有匹配的活跃状态时,`default.js` 会被渲染。这就像是一个"后备"或"默认"视图。
+
+2. 语法和位置
+
+`default.js` 文件应该放在 Parallel Route 文件夹的根目录下:
+
+```
+app/
+├── @team/
+│   ├── default.js
+│   └── page.js
+└── layout.js
+```
+
+3. 使用场景
+
+假设您有一个布局,其中包含一个主内容区和一个侧边栏。侧边栏可能会显示不同的内容,但当没有特定内容时,您希望显示一个默认视图:
+
+```jsx
+// app/layout.js
+export default function Layout({ children, team }) {
+  return (
+    <div>
+      <main>{children}</main>
+      <aside>{team}</aside>
+    </div>
+  )
+}
+```
+
+当访问 `/` 路径时,如果没有匹配 `@team` 的内容,`default.js` 将被渲染在侧边栏中。
+
+4. 示例
+
+```jsx
+// app/@team/default.js
+export default function Default() {
+  return <p>选择一个团队来查看详情</p>
+}
+```
+
+5. 与 404 的区别
+
+`default.js` 不同于 `not-found.js`。`not-found.js` 用于处理 404 错误,而 `default.js` 是为了提供一个默认视图。
+
+6. 动态渲染
+
+`default.js` 可以是一个动态组件,根据当前路由或其他条件来渲染不同的内容。
+
+```jsx
+// app/@team/default.js
+'use client'
+
+import { usePathname } from 'next/navigation'
+
+export default function Default() {
+  const pathname = usePathname()
+  
+  if (pathname === '/projects') {
+    return <p>选择一个项目来查看团队成员</p>
+  }
+  
+  return <p>选择一个选项来查看团队信息</p>
+}
+```
+
+7. 优先级
+
+如果存在 `default.js`,它会优先于显示 `null` 或不渲染任何内容。
+
+总的来说,`default.js` 提供了一种优雅的方式来处理 Parallel Routes 中的默认状态或空状态。它增强了用户体验,确保即使在没有特定内容的情况下,UI 也能保持一致和信息丰富。
+
+这个功能特别有用于构建复杂的仪表板、多面板界面或任何需要条件性内容显示的场景。
